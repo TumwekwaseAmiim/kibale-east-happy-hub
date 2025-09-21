@@ -12,14 +12,16 @@
     <a href="leaderboard.html">📋 Leaderboard</a>
   </nav>
 
+  <!-- 🎉 Banner -->
   <div class="banner">
     <h1>💛 Voters Leaderboard</h1>
     <p>Thanks for loving Hon. Frank 2026! #FrankMyMP #FrankMyChoice</p>
   </div>
 
+  <!-- 📊 Voters Table -->
   <section id="leaderboard">
     <h2>📋 List of Voters</h2>
-    <table id="voterTable" border="1" cellspacing="0" cellpadding="8" style="margin:auto; background:white;">
+    <table id="voterTable" border="1" cellspacing="0" cellpadding="8" style="margin:auto; background:white; width:80%; text-align:center;">
       <thead>
         <tr>
           <th>#</th>
@@ -31,7 +33,7 @@
     </table>
   </section>
 
-  <!-- 🌍 Follow Us (same popup links) -->
+  <!-- 🌍 Follow Us -->
   <section id="follow">
     <h2>📢 Join & Follow the Movement</h2>
     <p>Before joining our groups, please first call 📞 <strong>0786598658</strong></p>
@@ -49,10 +51,13 @@
     </p>
   </section>
 
+  <!-- ⚡ Footer -->
   <footer>
     <p>Powered by Eng. Amiim Tumwekwase | Kibale East ✨</p>
+    <p><a href="index.html">⬅ Back to Home</a></p>
   </footer>
 
+  <!-- 📜 Script -->
   <script>
     async function loadVoters() {
       try {
@@ -61,29 +66,35 @@
         const tbody = document.querySelector("#voterTable tbody");
         tbody.innerHTML = "";
 
-        data.voters.forEach((v, index) => {
+        if (data.voters && data.voters.length > 0) {
+          data.voters.forEach((v, index) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+              <td>${index + 1}</td>
+              <td>${v.name}</td>
+              <td>${v.song.toUpperCase()}</td>
+            `;
+            tbody.appendChild(row);
+          });
+        } else {
           const row = document.createElement("tr");
-          row.innerHTML = `
-            <td>${index + 1}</td>
-            <td>${v.name}</td>
-            <td>${v.song.toUpperCase()}</td>
-          `;
+          row.innerHTML = `<td colspan="3">No votes yet</td>`;
           tbody.appendChild(row);
-        });
+        }
       } catch (err) {
         console.error(err);
       }
     }
 
-    window.onload = loadVoters;
-
-    // 🌍 Confirm before redirecting
+    // 🌍 Confirm before joining
     function confirmJoin(link) {
       const proceed = confirm("📞 Please call 0786598658 before joining. Do you want to continue?");
       if (proceed) {
         window.open(link, "_blank");
       }
     }
+
+    window.onload = loadVoters;
   </script>
 </body>
 </html>
