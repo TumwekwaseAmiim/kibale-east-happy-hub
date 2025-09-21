@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hon. Frank 2026 – Voting</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="banner">
+    <h1>🎤 Vote for Your Favorite Song</h1>
+  </div>
+
+  <section id="voting">
+    <input type="text" id="voterName" placeholder="Enter your name">
+    <div class="song">
+      <p><strong>Song 1:</strong> Our Leader Frank</p>
+      <audio controls><source src="songs/song1.mp3" type="audio/mpeg"></audio>
+      <button onclick="voteSong('song1')">Vote Song 1</button>
+    </div>
+    <div class="song">
+      <p><strong>Song 2:</strong> Frank My MP</p>
+      <audio controls><source src="songs/song2.mp3" type="audio/mpeg"></audio>
+      <button onclick="voteSong('song2')">Vote Song 2</button>
+    </div>
+    <div class="song">
+      <p><strong>Song 3:</strong> Choice of the People</p>
+      <audio controls><source src="songs/song3.mp3" type="audio/mpeg"></audio>
+      <button onclick="voteSong('song3')">Vote Song 3</button>
+    </div>
+    <p id="voteResult"></p>
+
+    <p><a class="btn" href="leaderboard.html">📊 View Leaderboard</a></p>
+  </section>
+
+  <p>
+    <a class="btn" href="game.html">➡ Play Game</a>
+    <a class="btn back" href="home.html">⬅ Back to Home</a>
+  </p>
+</body>
+</html>

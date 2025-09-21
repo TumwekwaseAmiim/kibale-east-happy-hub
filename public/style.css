@@ -1,166 +1,19 @@
-body { 
-  font-family: Arial, sans-serif; 
-  text-align: center; 
-  padding: 20px; 
-  background: #fff9c4; 
-  margin: 0;
-}
-
-.navbar {
-  background: #fdd835;
-  padding: 10px;
-  text-align: center;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.navbar a {
-  text-decoration: none;
-  margin: 0 15px;
-  font-weight: bold;
-  color: #333;
-  font-size: 18px;
-}
-
-.navbar a:hover {
-  color: #e65100;
-}
-
-.banner {
-  background: #ffeb3b;
-  padding: 30px 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  animation: pulse 2s infinite;
-}
-
-.banner h1 {
-  font-size: 2.5em;
-  color: #333;
-}
-
-.banner p {
-  font-size: 1.2em;
-  color: #444;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-#flyer {
-  margin: 20px auto;
-}
-
-.flyer-img {
-  max-width: 400px;
-  width: 90%;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  margin-bottom: 10px;
-}
-
-.song, #game, #voting {
-  margin: 15px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #fffde7;
-  max-width: 600px;
-}
-
-.choices button, .song button {
-  margin: 5px; 
-  padding: 10px 20px; 
-  font-size: 16px; 
-  border-radius: 8px; 
-  cursor: pointer; 
-  background: #fdd835;
-  border: none;
-  transition: 0.3s;
-}
-
-.choices button:hover, .song button:hover {
-  background: #fbc02d;
-}
-
-#feedback { font-weight: bold; font-size: 18px; }
-#fact { font-style: italic; color: #005f73; }
-.tags { color: #e65100; font-weight: bold; margin-top: 8px; }
-
-#leaderboard table {
-  border-collapse: collapse;
-  width: 80%;
-  max-width: 600px;
-}
-
-#leaderboard th {
-  background: #fdd835;
-  color: #333;
-}
-
-#leaderboard td, #leaderboard th {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
-footer {
-  margin-top: 30px;
-  padding: 10px;
-  background: #ffeb3b;
-  font-size: 14px;
-  color: #333;
-}
-
-/* 🌍 Follow Section */
-#follow {
-  margin: 30px auto;
-  padding: 20px;
-  background: #fffde7;
-  border: 2px dashed #fdd835;
-  border-radius: 10px;
-  max-width: 600px;
-}
-
-#follow h2 {
-  color: #e65100;
-  margin-bottom: 10px;
-}
-
-#follow a {
+.btn {
   display: inline-block;
-  margin: 10px;
-  padding: 10px 20px;
+  margin: 15px;
+  padding: 15px 30px;
+  font-size: 20px;
   background: #fdd835;
   color: #333;
   text-decoration: none;
+  border-radius: 10px;
   font-weight: bold;
-  border-radius: 5px;
-  transition: 0.3s;
 }
+.btn:hover { background: #fbc02d; }
+.btn.back { background: #ccc; }
 
-#follow a:hover {
-  background: #fbc02d;
-}
-
-/* 📱 Mobile Optimization */
 @media (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
-  .banner h1 {
-    font-size: 1.6em;
-  }
-  .banner p, #follow, #game, #voting {
-    font-size: 1em;
-  }
-  .navbar a {
-    font-size: 16px;
-    margin: 0 8px;
-  }
-  .song audio {
-    width: 100%;
-  }
+  body { padding: 10px; }
+  h1 { font-size: 1.8em; }
+  p, .btn { font-size: 1.1em; }
 }

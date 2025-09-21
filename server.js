@@ -1,47 +1,60 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const fs = require("fs");
+const path = require("path");
 
 const app = express();
-const PORT = process.env.PORT || 5000;
-
-app.use(cors());
 app.use(bodyParser.json());
+app.use(cors());
 app.use(express.static("public"));
 
 const votesFile = path.join(__dirname, "votes.json");
 
-if (!fs.existsSync(votesFile)) {
-  fs.writeFileSync(votesFile, JSON.stringify({ song1: 0, song2: 0, song3: 0, voters: [] }, null, 2));
-}
+// 👉 Serve home.html as default
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "home.html"));
+});
 
+// 📊 API endpoints for voting
 app.get("/api/votes", (req, res) => {
+  if (!fs.existsSync(votesFile)) {
+    fs.writeFileSync(votesFile, JSON.stringify({ song1: 0, song2: 0, song3: 0, voters: [] }, null, 2));
+  }
   const data = JSON.parse(fs.readFileSync(votesFile));
   res.json(data);
 });
 
 app.post("/api/vote", (req, res) => {
   const { name, song } = req.body;
+
   if (!name || !song) {
-    return res.status(400).json({ error: "Name and song required" });
+    return res.status(400).json({ error: "Name and song are required" });
   }
 
-  let data = JSON.parse(fs.readFileSync(votesFile));
+  if (!fs.existsSync(votesFile)) {
+    fs.writeFileSync(votesFile, JSON.stringify({ song1: 0, song2: 0, song3: 0, voters: [] }, null, 2));
+  }
 
+  const data = JSON.parse(fs.readFileSync(votesFile));
+
+  // check if already voted
   if (data.voters.find(v => v.name.toLowerCase() === name.toLowerCase())) {
-    return res.status(400).json({ error: "You already voted!" });
+    return res.status(400).json({ error: "You have already voted!" });
   }
 
-  if (data[song] !== undefined) {
-    data[song]++;
-    data.voters.push({ name, song });
-    fs.writeFileSync(votesFile, JSON.stringify(data, null, 2));
-    return res.json({ message: `✅ Thanks for voting ${name}, and thanks for loving Hon. Frank 💛`, data });
-  } else {
-    return res.status(400).json({ error: "Invalid song choice" });
+  if (!data[song]) {
+    return res.status(400).json({ error: "Invalid song" });
   }
+
+  data[song]++;
+  data.voters.push({ name, song });
+
+  fs.writeFileSync(votesFile, JSON.stringify(data, null, 2));
+
+  res.json({ message: "Vote recorded", data });
 });
 
+// Start server (Render friendly port)
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
