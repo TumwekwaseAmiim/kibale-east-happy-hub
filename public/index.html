@@ -2,8 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hon. Frank 2026 – Interactive Campaign</title>
+  <title>Hon. Frank 2026 – Kibale East Happy Hub</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- 🔗 Social Media Share Preview -->
+  <meta property="og:title" content="💛 Hon. Frank Tumwebaze 2026 – Kibale East Happy Hub">
+  <meta property="og:description" content="🎶 Play games, vote for songs, and support #FrankMyMP #FrankMyChoice 💛">
+  <meta property="og:image" content="https://kibale-east-happy-hub.onrender.com/frankworks.jpg">
+  <meta property="og:url" content="https://kibale-east-happy-hub.onrender.com">
+  <meta property="og:type" content="website">
+
+  <!-- For Twitter/X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="💛 Hon. Frank Tumwebaze 2026 – Kibale East Happy Hub">
+  <meta name="twitter:description" content="🎶 Join us, play, vote, and support Hon. Frank Tumwebaze.">
+  <meta name="twitter:image" content="https://kibale-east-happy-hub.onrender.com/frankworks.jpg">
 </head>
 <body>
   <!-- 🌐 Navigation -->
@@ -12,83 +25,53 @@
     <a href="leaderboard.html">📋 Leaderboard</a>
   </nav>
 
-  <!-- 🔥 Animated Banner -->
+  <!-- 🎉 Banner -->
   <div class="banner">
-    <h1>Let’s be there for Hon. Frank 2026 💛</h1>
-    <p>He is our own. #FrankMyMP #FrankMyChoice</p>
+    <h1>💛 Let’s Be There for Hon. Frank 2026!</h1>
+    <p>He is our own. Support #FrankMyMP #FrankMyChoice</p>
   </div>
 
-  <!-- 🖼️ Flyer -->
+  <!-- 📸 Flyer -->
   <section id="flyer">
-    <img src="frankworks.jpg" alt="Frank Works Flyer" class="flyer-img">
-    <p><em>Join the movement for 2026 ✨</em></p>
+    <img src="frankworks.jpg" alt="Hon. Frank Works Flyer" class="flyer-img">
+  </section>
+
+  <!-- 🎶 Song Voting -->
+  <section id="voting">
+    <h2>🎤 Vote for Your Favorite Song</h2>
+    <input type="text" id="voterName" placeholder="Enter your name">
+    <div class="song">
+      <p><strong>Song 1:</strong> Our Leader Frank</p>
+      <audio controls><source src="songs/song1.mp3" type="audio/mpeg"></audio>
+      <button onclick="voteSong('song1')">Vote Song 1</button>
+    </div>
+    <div class="song">
+      <p><strong>Song 2:</strong> Frank My MP</p>
+      <audio controls><source src="songs/song2.mp3" type="audio/mpeg"></audio>
+      <button onclick="voteSong('song2')">Vote Song 2</button>
+    </div>
+    <div class="song">
+      <p><strong>Song 3:</strong> Choice of the People</p>
+      <audio controls><source src="songs/song3.mp3" type="audio/mpeg"></audio>
+      <button onclick="voteSong('song3')">Vote Song 3</button>
+    </div>
+    <p id="voteResult"></p>
+
+    <!-- 📊 Link to Leaderboard -->
+    <p><a href="leaderboard.html"><strong>📊 View Leaderboard</strong></a></p>
   </section>
 
   <!-- 🎮 Guess the Sound Game -->
   <section id="game">
     <h2>🎮 Guess the Sound Game</h2>
-    <button onclick="playSound()">▶️ Play Sound</button>
+    <button onclick="playSound()">▶ Play Sound</button>
     <div class="choices"></div>
     <p id="feedback"></p>
     <p id="fact"></p>
     <p class="tags" id="tags"></p>
     <p>Score: <span id="score">0</span></p>
-    <button onclick="nextSound()">➡️ Next</button>
+    <button onclick="nextSound()">➡ Next</button>
   </section>
-
-  <hr>
-
-  <!-- 🎤 Song Voting Section -->
-  <section id="voting">
-    <h2>🎤 Vote for Your Favorite Frank Song</h2>
-
-    <p>Enter your name before voting:</p>
-    <input type="text" id="voterName" placeholder="Your Name">
-
-    <div class="song">
-      <p>Song 1: Frank Tumwebaze (Mr Bonde)</p>
-      <audio controls preload="auto">
-        <source src="songs/song1.mp3" type="audio/mpeg">
-      </audio>
-      <button onclick="voteSong('song1')">Vote</button>
-    </div>
-
-    <div class="song">
-      <p>Song 2: Hon. Flank Tumwebaze (Beingana Geoffrey)</p>
-      <audio controls preload="auto">
-        <source src="songs/song2.mp3" type="audio/mpeg">
-      </audio>
-      <button onclick="voteSong('song2')">Vote</button>
-    </div>
-
-    <div class="song">
-      <p>Song 3: Hon. Min. Frank (Rev. Beingana Roland)</p>
-      <audio controls preload="auto">
-        <source src="songs/song3.mp3" type="audio/mpeg">
-      </audio>
-      <button onclick="voteSong('song3')">Vote</button>
-    </div>
-
-    <p id="voteResult"></p>
-
-    <!-- Share Buttons -->
-    <div id="shareButtons" style="display:none;">
-      <p>📢 Share your vote:</p>
-      <a id="whatsappShare" target="_blank">WhatsApp</a> | 
-      <a id="twitterShare" target="_blank">Twitter</a> | 
-      <a id="facebookShare" target="_blank">Facebook</a>
-    </div>
-
-    <!-- Live Results -->
-    <div id="results">
-      <h3>📊 Live Results</h3>
-      <p>Song 1: <span id="r1">0</span> votes</p>
-      <p>Song 2: <span id="r2">0</span> votes</p>
-      <p>Song 3: <span id="r3">0</span> votes</p>
-    </div>
-  </section>
-
-  <hr>
 
   <!-- 🌍 Follow Us -->
   <section id="follow">
@@ -97,22 +80,31 @@
 
     <p>
       <a href="#" onclick="confirmJoin('https://chat.whatsapp.com/IdUpY9g84OIGoJJQrgNURI?mode=ems_copy_t')">
-        💬 Join our WhatsApp Community
+        <strong>💬 Join our <span style="color:green;">WhatsApp Community</span></strong>
       </a>
     </p>
 
     <p>
       <a href="#" onclick="confirmJoin('https://www.tiktok.com/@tumwekwase.com?_t=ZM-8zv8CrW7dIO&_r=1')">
-        🎶 Follow us on TikTok (@tumwekwase.com)
+        <strong>🎶 Follow us on <span style="color:#ff0050;">TikTok</span> (@tumwekwase.com)</strong>
       </a>
     </p>
   </section>
 
+  <!-- ⚡ Footer -->
   <footer>
     <p>Powered by Eng. Amiim Tumwekwase | Kibale East ✨</p>
-    <p><a href="leaderboard.html">📋 View Voters Leaderboard</a></p>
   </footer>
 
+  <!-- 📜 Script -->
   <script src="script.js"></script>
+  <script>
+    function confirmJoin(link) {
+      const proceed = confirm("📞 Please call 0786598658 before joining. Do you want to continue?");
+      if (proceed) {
+        window.open(link, "_blank");
+      }
+    }
+  </script>
 </body>
 </html>
