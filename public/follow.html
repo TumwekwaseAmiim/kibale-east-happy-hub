@@ -5,22 +5,22 @@
   <title>Hon. Frank 2026 – Follow Us</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="follow"> <!-- 🔥 Background color class -->
   <div class="banner">
     <h1>📢 Join & Follow the Movement</h1>
   </div>
 
   <section id="follow">
-    <p>Before joining our groups, please first call 📞 <strong>0786598658</strong></p>
+    <p>Before joining our <span style="color:green;">WhatsApp Community</span>, please first call 📞 <strong>0786598658</strong></p>
 
     <p>
-      <a href="#" onclick="confirmJoin('https://chat.whatsapp.com/IdUpY9g84OIGoJJQrgNURI?mode=ems_copy_t')">
+      <a href="#" onclick="joinWhatsApp()">
         <strong>💬 Join our <span style="color:green;">WhatsApp Community</span></strong>
       </a>
     </p>
 
     <p>
-      <a href="#" onclick="confirmJoin('https://www.tiktok.com/@tumwekwase.com?_t=ZM-8zv8CrW7dIO&_r=1')">
+      <a href="https://www.tiktok.com/@tumwekwase.com?_t=ZM-8zv8CrW7dIO&_r=1" target="_blank">
         <strong>🎶 Follow us on <span style="color:#ff0050;">TikTok</span> (@tumwekwase.com)</strong>
       </a>
     </p>
@@ -35,10 +35,10 @@
   </footer>
 
   <script>
-    function confirmJoin(link) {
-      const proceed = confirm("📞 Please call 0786598658 before joining. Do you want to continue?");
+    function joinWhatsApp() {
+      const proceed = confirm("📞 Please call 0786598658 before joining the WhatsApp group. Do you want to continue?");
       if (proceed) {
-        window.open(link, "_blank");
+        window.open("https://chat.whatsapp.com/IdUpY9g84OIGoJJQrgNURI?mode=ems_copy_t", "_blank");
       }
     }
   </script>

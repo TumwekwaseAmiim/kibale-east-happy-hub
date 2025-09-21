@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(express.static("public"));
 
-const votesFile = path.join(__dirname, "votes.json");
+const votesFile = path.join(__dirname, "votes.json");  
 
 // 👉 Serve home.html as default
 app.get("/", (req, res) => {
@@ -19,27 +19,39 @@ app.get("/", (req, res) => {
 // 📊 API endpoints for voting
 app.get("/api/votes", (req, res) => {
   if (!fs.existsSync(votesFile)) {
-    fs.writeFileSync(votesFile, JSON.stringify({ song1: 0, song2: 0, song3: 0, voters: [] }, null, 2));
+    fs.writeFileSync(
+      votesFile, 
+      JSON.stringify({ song1: 0, song2: 0, song3: 0, voters: [] }, null, 2)
+    );
   }
   const data = JSON.parse(fs.readFileSync(votesFile));
   res.json(data);
 });
 
 app.post("/api/vote", (req, res) => {
-  const { name, song } = req.body;
+  let { name, song } = req.body;
 
   if (!name || !song) {
     return res.status(400).json({ error: "Name and song are required" });
   }
 
+  // 📝 Trim spaces & normalize case
+  const voterName = name.trim();
+  if (voterName.length < 2) {
+    return res.status(400).json({ error: "Name must be at least 2 characters long" });
+  }
+
   if (!fs.existsSync(votesFile)) {
-    fs.writeFileSync(votesFile, JSON.stringify({ song1: 0, song2: 0, song3: 0, voters: [] }, null, 2));
+    fs.writeFileSync(
+      votesFile, 
+      JSON.stringify({ song1: 0, song2: 0, song3: 0, voters: [] }, null, 2)
+    );
   }
 
   const data = JSON.parse(fs.readFileSync(votesFile));
 
-  // check if already voted
-  if (data.voters.find(v => v.name.toLowerCase() === name.toLowerCase())) {
+  // 🚫 Prevent double-voting (case-insensitive)
+  if (data.voters.find(v => v.name.toLowerCase() === voterName.toLowerCase())) {
     return res.status(400).json({ error: "You have already voted!" });
   }
 
@@ -47,8 +59,13 @@ app.post("/api/vote", (req, res) => {
     return res.status(400).json({ error: "Invalid song" });
   }
 
+  // ✅ Record vote with timestamp
   data[song]++;
-  data.voters.push({ name, song });
+  data.voters.push({ 
+    name: voterName, 
+    song, 
+    timestamp: new Date().toISOString() 
+  });
 
   fs.writeFileSync(votesFile, JSON.stringify(data, null, 2));
 

@@ -5,7 +5,7 @@
   <title>Hon. Frank 2026 – Voters Leaderboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="leaderboard">
   <!-- 🎉 Banner -->
   <div class="banner">
     <h1>📊 Voters Leaderboard</h1>
@@ -15,12 +15,13 @@
   <!-- 📊 Voters Table -->
   <section id="leaderboard">
     <h2>📋 List of Voters</h2>
-    <table id="voterTable" border="1" cellspacing="0" cellpadding="8" style="margin:auto; background:white; width:80%; text-align:center;">
+    <table id="voterTable" cellspacing="0" cellpadding="8" style="margin:auto; background:white; width:90%; text-align:center; border-radius:8px;">
       <thead>
         <tr>
           <th>#</th>
           <th>Name</th>
           <th>Song Voted</th>
+          <th>⏰ Time</th>
         </tr>
       </thead>
       <tbody></tbody>
@@ -30,16 +31,16 @@
   <!-- 🌍 Follow Us -->
   <section id="follow">
     <h2>📢 Join & Follow the Movement</h2>
-    <p>Before joining our groups, please first call 📞 <strong>0786598658</strong></p>
+    <p>Before joining our <span style="color:green;">WhatsApp Community</span>, please first call 📞 <strong>0786598658</strong></p>
 
     <p>
-      <a href="#" onclick="confirmJoin('https://chat.whatsapp.com/IdUpY9g84OIGoJJQrgNURI?mode=ems_copy_t')">
+      <a href="#" onclick="joinWhatsApp()">
         <strong>💬 Join our <span style="color:green;">WhatsApp Community</span></strong>
       </a>
     </p>
 
     <p>
-      <a href="#" onclick="confirmJoin('https://www.tiktok.com/@tumwekwase.com?_t=ZM-8zv8CrW7dIO&_r=1')">
+      <a href="https://www.tiktok.com/@tumwekwase.com?_t=ZM-8zv8CrW7dIO&_r=1" target="_blank">
         <strong>🎶 Follow us on <span style="color:#ff0050;">TikTok</span> (@tumwekwase.com)</strong>
       </a>
     </p>
@@ -66,18 +67,27 @@
         tbody.innerHTML = "";
 
         if (data.voters && data.voters.length > 0) {
-          data.voters.forEach((v, index) => {
+          // 🆕 Sort voters by timestamp (newest first)
+          const sorted = [...data.voters].sort((a, b) => {
+            return new Date(b.timestamp || 0) - new Date(a.timestamp || 0);
+          });
+
+          sorted.forEach((v, index) => {
+            const time = v.timestamp 
+              ? new Date(v.timestamp).toLocaleString() 
+              : "N/A";
             const row = document.createElement("tr");
             row.innerHTML = `
               <td>${index + 1}</td>
               <td>${v.name}</td>
               <td>${v.song.toUpperCase()}</td>
+              <td>${time}</td>
             `;
             tbody.appendChild(row);
           });
         } else {
           const row = document.createElement("tr");
-          row.innerHTML = `<td colspan="3">No votes yet</td>`;
+          row.innerHTML = `<td colspan="4">No votes yet</td>`;
           tbody.appendChild(row);
         }
       } catch (err) {
@@ -85,11 +95,11 @@
       }
     }
 
-    // 🌍 Confirm before joining
-    function confirmJoin(link) {
-      const proceed = confirm("📞 Please call 0786598658 before joining. Do you want to continue?");
+    // ✅ Confirm only for WhatsApp
+    function joinWhatsApp() {
+      const proceed = confirm("📞 Please call 0786598658 before joining the WhatsApp group. Do you want to continue?");
       if (proceed) {
-        window.open(link, "_blank");
+        window.open("https://chat.whatsapp.com/IdUpY9g84OIGoJJQrgNURI?mode=ems_copy_t", "_blank");
       }
     }
 

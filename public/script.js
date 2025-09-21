@@ -23,6 +23,7 @@ function showChoices() {
   sounds[current].choices.forEach(choice => {
     let btn = document.createElement("button");
     btn.innerText = choice;
+    btn.className = "btn"; // 🔥 styled like big buttons
     btn.onclick = () => checkAnswer(choice);
     container.appendChild(btn);
   });
@@ -44,6 +45,9 @@ function checkAnswer(choice) {
 }
 
 function nextSound() {
+  audio.pause();
+  audio.currentTime = 0; // 🔥 stop any playing sound
+
   current++;
   if (current >= sounds.length) {
     alert("🎉 Game Over! Your final score is " + score + "\n\n#FrankMyMP #FrankMyChoice #Unity #Development");
@@ -82,7 +86,7 @@ async function voteSong(song) {
 
       // Show share buttons
       const shareSection = document.getElementById("shareButtons");
-      shareSection.style.display = "block";
+      if (shareSection) shareSection.style.display = "block";
 
       const message = encodeURIComponent(`I voted for ${song.toUpperCase()} in support of Hon. Frank Tumwebaze 💛 #FrankMyMP #FrankMyChoice`);
       const pageUrl = encodeURIComponent(window.location.href);
@@ -111,12 +115,10 @@ async function loadResults() {
 }
 
 function updateResults(data) {
-  document.getElementById("r1").innerText = data.song1;
-  document.getElementById("r2").innerText = data.song2;
-  document.getElementById("r3").innerText = data.song3;
+  document.getElementById("r1").innerText = data.song1 || 0;
+  document.getElementById("r2").innerText = data.song2 || 0;
+  document.getElementById("r3").innerText = data.song3 || 0;
 }
-
-window.onload = loadResults;
 
 // =======================
 // 🌍 Popup Confirmation
@@ -127,3 +129,15 @@ function confirmJoin(link) {
     window.open(link, "_blank");
   }
 }
+
+// =======================
+// 🚀 Init
+// =======================
+document.addEventListener("DOMContentLoaded", () => {
+  // Hide share buttons at start
+  const shareSection = document.getElementById("shareButtons");
+  if (shareSection) shareSection.style.display = "none";
+
+  // Load voting results
+  loadResults();
+});

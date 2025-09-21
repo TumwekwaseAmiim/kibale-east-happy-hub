@@ -6,19 +6,19 @@
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-<body>
+<body class="game"> <!-- 🔥 Blue background -->
   <div class="banner">
     <h1>🎮 Guess the Sound Game</h1>
   </div>
 
   <section id="game">
-    <button onclick="playSound()">▶ Play Sound</button>
+    <button class="btn" onclick="playSound()">▶ Play Sound</button>
     <div class="choices"></div>
     <p id="feedback"></p>
     <p id="fact"></p>
     <p class="tags" id="tags"></p>
     <p>Score: <span id="score">0</span></p>
-    <button onclick="nextSound()">➡ Next</button>
+    <button class="btn" onclick="nextSound()">➡ Next</button>
   </section>
 
   <p>

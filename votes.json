@@ -5,7 +5,8 @@
   "voters": [
     {
       "name": "amiim",
-      "song": "song1"
+      "song": "song1",
+      "timestamp": "2025-09-21T22:45:30.000Z"
     }
   ]
 }
