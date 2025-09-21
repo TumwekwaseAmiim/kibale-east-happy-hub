@@ -2,17 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hon. Frank 2026 – Voters Leaderboard</title>
+  <title>📊 Hon. Frank 2026 – Voters Leaderboard</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="leaderboard">
   <!-- 🎉 Banner -->
   <div class="banner">
     <h1>📊 Voters Leaderboard</h1>
-    <p>Thanks for loving Hon. Frank 2026! #FrankMyMP #FrankMyChoice</p>
+    <p>Thanks for supporting Hon. Frank Tumwebaze! 💛 #FrankMyMP #FrankMyChoice</p>
   </div>
 
-  <!-- 📊 Voters Table -->
+  <!-- 📊 Progress Bars -->
+  <section id="results">
+    <h2>📈 Voting Progress</h2>
+    <div class="bar">
+      Song 1 – Our Leader Frank:
+      <div class="progress"><div id="bar1" class="fill"></div></div>
+      <span id="r1">0</span> votes
+    </div>
+    <div class="bar">
+      Song 2 – Frank My MP:
+      <div class="progress"><div id="bar2" class="fill"></div></div>
+      <span id="r2">0</span> votes
+    </div>
+    <div class="bar">
+      Song 3 – Choice of the People:
+      <div class="progress"><div id="bar3" class="fill"></div></div>
+      <span id="r3">0</span> votes
+    </div>
+  </section>
+
+  <!-- 📋 Voters Table -->
   <section id="leaderboard">
     <h2>📋 List of Voters</h2>
     <table id="voterTable" cellspacing="0" cellpadding="8" style="margin:auto; background:white; width:90%; text-align:center; border-radius:8px;">
@@ -28,28 +48,10 @@
     </table>
   </section>
 
-  <!-- 🌍 Follow Us -->
-  <section id="follow">
-    <h2>📢 Join & Follow the Movement</h2>
-    <p>Before joining our <span style="color:green;">WhatsApp Community</span>, please first call 📞 <strong>0786598658</strong></p>
-
-    <p>
-      <a href="#" onclick="joinWhatsApp()">
-        <strong>💬 Join our <span style="color:green;">WhatsApp Community</span></strong>
-      </a>
-    </p>
-
-    <p>
-      <a href="https://www.tiktok.com/@tumwekwase.com?_t=ZM-8zv8CrW7dIO&_r=1" target="_blank">
-        <strong>🎶 Follow us on <span style="color:#ff0050;">TikTok</span> (@tumwekwase.com)</strong>
-      </a>
-    </p>
-  </section>
-
-  <!-- 🔙 Back Buttons -->
+  <!-- 🔙 Navigation -->
   <p>
-    <a class="btn back" href="voting.html">⬅ Back to Voting</a>
-    <a class="btn back" href="home.html">⬅ Back to Home</a>
+    <a class="btn back" href="voting.html">⬅ Tap to Go Back to Voting</a>
+    <a class="btn back" href="home.html">⬅ Tap to Return Home</a>
   </p>
 
   <!-- ⚡ Footer -->
@@ -63,19 +65,23 @@
       try {
         const res = await fetch("/api/votes");
         const data = await res.json();
+
+        // 🟡 Update Progress Bars
+        const total = data.song1 + data.song2 + data.song3 || 1;
+        document.getElementById("r1").innerText = data.song1;
+        document.getElementById("r2").innerText = data.song2;
+        document.getElementById("r3").innerText = data.song3;
+        document.getElementById("bar1").style.width = (data.song1 / total * 100) + "%";
+        document.getElementById("bar2").style.width = (data.song2 / total * 100) + "%";
+        document.getElementById("bar3").style.width = (data.song3 / total * 100) + "%";
+
+        // 🟡 Update Table
         const tbody = document.querySelector("#voterTable tbody");
         tbody.innerHTML = "";
-
         if (data.voters && data.voters.length > 0) {
-          // 🆕 Sort voters by timestamp (newest first)
-          const sorted = [...data.voters].sort((a, b) => {
-            return new Date(b.timestamp || 0) - new Date(a.timestamp || 0);
-          });
-
+          const sorted = [...data.voters].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
           sorted.forEach((v, index) => {
-            const time = v.timestamp 
-              ? new Date(v.timestamp).toLocaleString() 
-              : "N/A";
+            const time = v.timestamp ? new Date(v.timestamp).toLocaleString() : "N/A";
             const row = document.createElement("tr");
             row.innerHTML = `
               <td>${index + 1}</td>
@@ -86,24 +92,18 @@
             tbody.appendChild(row);
           });
         } else {
-          const row = document.createElement("tr");
-          row.innerHTML = `<td colspan="4">No votes yet</td>`;
-          tbody.appendChild(row);
+          tbody.innerHTML = `<tr><td colspan="4">No votes yet</td></tr>`;
         }
       } catch (err) {
         console.error(err);
       }
     }
 
-    // ✅ Confirm only for WhatsApp
-    function joinWhatsApp() {
-      const proceed = confirm("📞 Please call 0786598658 before joining the WhatsApp group. Do you want to continue?");
-      if (proceed) {
-        window.open("https://chat.whatsapp.com/IdUpY9g84OIGoJJQrgNURI?mode=ems_copy_t", "_blank");
-      }
-    }
-
-    window.onload = loadVoters;
+    // Load immediately + refresh every 10 seconds
+    window.onload = () => {
+      loadVoters();
+      setInterval(loadVoters, 10000);
+    };
   </script>
 </body>
 </html>

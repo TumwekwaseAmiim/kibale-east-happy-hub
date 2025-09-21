@@ -2,32 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hon. Frank 2026 – Follow Us</title>
+  <title>Hon. Frank Tumwebaze 2026 – Join & Follow</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="follow"> <!-- 🔥 Background color class -->
+<body class="follow">
   <div class="banner">
     <h1>📢 Join & Follow the Movement</h1>
   </div>
 
   <section id="follow">
-    <p>Before joining our <span style="color:green;">WhatsApp Community</span>, please first call 📞 <strong>0786598658</strong></p>
+    <p>📞 Before joining our groups, please first call <strong>0786598658</strong></p>
 
     <p>
-      <a href="#" onclick="joinWhatsApp()">
-        <strong>💬 Join our <span style="color:green;">WhatsApp Community</span></strong>
+      <a href="#" onclick="confirmJoin('https://chat.whatsapp.com/IdUpY9g84OIGoJJQrgNURI?mode=ems_copy_t')">
+        💬 Tap to Join our <span style="color:green;">WhatsApp Community</span>
       </a>
     </p>
 
     <p>
       <a href="https://www.tiktok.com/@tumwekwase.com?_t=ZM-8zv8CrW7dIO&_r=1" target="_blank">
-        <strong>🎶 Follow us on <span style="color:#ff0050;">TikTok</span> (@tumwekwase.com)</strong>
+        🎶 Tap to Follow us on <span style="color:#ff0050;">TikTok</span> (@tumwekwase.com)
       </a>
     </p>
   </section>
 
   <p>
-    <a class="btn back" href="game.html">⬅ Back to Game</a>
+    <a class="btn back" href="game.html">⬅ Tap to Return to Game</a>
+    <a class="btn back" href="home.html">⬅ Tap to Return to Campaign Hub</a>
   </p>
 
   <footer>
@@ -35,10 +36,10 @@
   </footer>
 
   <script>
-    function joinWhatsApp() {
-      const proceed = confirm("📞 Please call 0786598658 before joining the WhatsApp group. Do you want to continue?");
+    function confirmJoin(link) {
+      const proceed = confirm("📞 Please call 0786598658 before joining WhatsApp. Continue?");
       if (proceed) {
-        window.open("https://chat.whatsapp.com/IdUpY9g84OIGoJJQrgNURI?mode=ems_copy_t", "_blank");
+        window.open(link, "_blank");
       }
     }
   </script>

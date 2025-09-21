@@ -1,12 +1,17 @@
+/* 🌍 Import Clean Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
 /* 🌍 General Body */
 body { 
-  font-family: Arial, sans-serif; 
+  font-family: 'Poppins', Arial, sans-serif; 
   text-align: center; 
   margin: 0; 
   padding: 0;
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* full screen height */
+  min-height: 100vh;
+  background: #fff9c4; /* ✅ Always yellow background */
+  color: #222; /* ✅ readable text */
 }
 
 /* 🎉 Banner */
@@ -18,13 +23,15 @@ body {
   animation: pulse 2s infinite;
 }
 .banner h1 {
-  font-size: 2em;
-  color: #333;
+  font-size: 2.2em;
+  font-weight: 700;
+  color: #222;
   margin: 0 0 10px;
 }
 .banner p {
   font-size: 1.2em;
-  color: #444;
+  font-weight: 500;
+  color: #333;
   margin: 0;
 }
 @keyframes pulse {
@@ -48,21 +55,25 @@ body {
 .btn {
   display: block;
   width: 90%;
-  max-width: 400px;
+  max-width: 420px;
   margin: 20px auto;
   padding: 18px;
   font-size: 1.3em;
   text-align: center;
   background: #fdd835;
-  color: #222;
+  color: #111;
   text-decoration: none;
   border-radius: 12px;
-  font-weight: bold;
+  font-weight: 600;
+  letter-spacing: 0.5px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.25);
   transition: 0.3s;
 }
 .btn:hover { background: #fbc02d; }
-.btn.back { background: #ccc; }
+.btn.back {
+  background: #e0e0e0;   /* ✅ visible gray */
+  color: #111;           /* ✅ dark text */
+}
 
 /* 🎮 Guess Game Choices */
 .choices button {
@@ -72,10 +83,12 @@ body {
   max-width: 320px;
   padding: 14px;
   font-size: 1.1em;
+  font-weight: 600;
   background: #ffeb3b;
   border: none;
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+  cursor: pointer;
 }
 
 /* 🎤 Voting / Game / Follow Boxes */
@@ -83,7 +96,7 @@ body {
   margin: 20px auto;
   padding: 20px;
   border-radius: 12px;
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.95);
   max-width: 650px;
   box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
@@ -94,11 +107,13 @@ body {
 .song button {
   padding: 14px;
   font-size: 1.1em;
+  font-weight: 600;
   background: #ffeb3b;
   border: none;
   border-radius: 8px;
   width: 100%;
   margin-top: 8px;
+  cursor: pointer;
 }
 
 /* 📊 Leaderboard */
@@ -106,57 +121,57 @@ body {
   border-collapse: collapse;
   width: 100%;
   margin-top: 15px;
+  font-size: 1.1em;
 }
 #leaderboard th {
   background: #fdd835;
-  color: #333;
+  color: #222;
+  font-weight: 700;
+  padding: 12px;
 }
-#leaderboard td, #leaderboard th {
+#leaderboard td {
   border: 1px solid #ccc;
   padding: 10px;
-  font-size: 1.1em;
+  color: #333;
 }
 
 /* 📢 Follow Section */
 #follow h2 {
   color: #e65100;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  font-weight: 700;
 }
 #follow a {
   display: block;
-  margin: 12px auto;
+  margin: 15px auto;
   padding: 15px;
   background: #fdd835;
-  color: #222;
+  color: #111;
   text-decoration: none;
   font-size: 1.2em;
+  font-weight: 600;
   border-radius: 10px;
-  font-weight: bold;
   max-width: 400px;
+  transition: 0.3s;
 }
 #follow a:hover { background: #fbc02d; }
 
 /* ⚡ Footer */
 footer {
   margin-top: auto;
-  padding: 12px;
+  padding: 15px;
   background: #ffeb3b;
   text-align: center;
-  font-size: 0.9em;
-  color: #222;
+  font-size: 1em;
+  font-weight: 500;
+  color: #111;
 }
-
-/* 🌈 Page-specific backgrounds */
-body.home { background: #fff9c4; }        /* Light Yellow for Home */
-body.voting { background: #e8f5e9; }     /* Light Green for Voting */
-body.game { background: #e3f2fd; }       /* Light Blue for Game */
-body.follow { background: #fff3e0; }     /* Light Orange for Follow */
-body.leaderboard { background: #f3e5f5; }/* Light Purple for Leaderboard */
 
 /* 📱 Mobile Optimization */
 @media (max-width: 600px) {
-  .banner h1 { font-size: 1.8em; }
+  .banner h1 { font-size: 1.9em; }
   .banner p { font-size: 1.1em; }
   .btn { font-size: 1.2em; padding: 20px; }
   .flyer-img { width: 95%; max-width: 280px; }
+  #leaderboard table { font-size: 1em; }
 }

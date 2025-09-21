@@ -2,52 +2,43 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Hon. Frank 2026 – Voting</title>
+  <title>Hon. Frank Tumwebaze 2026 – Voting Hub</title>
   <link rel="stylesheet" href="style.css">
   <script src="script.js" defer></script>
 </head>
-<body class="voting"> <!-- 🔥 Green background -->
+<body class="voting">
   <div class="banner">
-    <h1>🎤 Vote for Your Favorite Song</h1>
+    <h1>🎤 Tap to Vote for Your Favorite Song</h1>
   </div>
 
   <section id="voting">
-    <input type="text" id="voterName" placeholder="Enter your name">
+    <input type="text" id="voterName" placeholder="✍️ Enter your name">
 
     <div class="song">
       <p><strong>Song 1:</strong> Our Leader Frank</p>
       <audio controls><source src="songs/song1.mp3" type="audio/mpeg"></audio>
-      <button class="btn" onclick="voteSong('song1')">Vote Song 1</button>
+      <button onclick="voteSong('song1')">👉 Tap to Vote Song 1</button>
     </div>
 
     <div class="song">
       <p><strong>Song 2:</strong> Frank My MP</p>
       <audio controls><source src="songs/song2.mp3" type="audio/mpeg"></audio>
-      <button class="btn" onclick="voteSong('song2')">Vote Song 2</button>
+      <button onclick="voteSong('song2')">👉 Tap to Vote Song 2</button>
     </div>
 
     <div class="song">
       <p><strong>Song 3:</strong> Choice of the People</p>
       <audio controls><source src="songs/song3.mp3" type="audio/mpeg"></audio>
-      <button class="btn" onclick="voteSong('song3')">Vote Song 3</button>
+      <button onclick="voteSong('song3')">👉 Tap to Vote Song 3</button>
     </div>
 
     <p id="voteResult"></p>
-
-    <!-- 📲 Share Buttons (hidden until vote) -->
-    <div id="shareButtons" style="display:none; margin-top:15px;">
-      <p><strong>📢 Share your support:</strong></p>
-      <a id="whatsappShare" class="btn" target="_blank">💬 Share on WhatsApp</a>
-      <a id="twitterShare" class="btn" target="_blank">🐦 Share on Twitter</a>
-      <a id="facebookShare" class="btn" target="_blank">📘 Share on Facebook</a>
-    </div>
-
-    <p><a class="btn" href="leaderboard.html">📊 View Leaderboard</a></p>
+    <p><a class="btn" href="leaderboard.html">📊 Tap to View Leaderboard</a></p>
   </section>
 
   <p>
-    <a class="btn" href="game.html">➡ Play Game</a>
-    <a class="btn back" href="home.html">⬅ Back to Home</a>
+    <a class="btn" href="game.html">🎮 Tap to Play Game</a>
+    <a class="btn back" href="home.html">⬅ Tap to Return to Campaign Hub</a>
   </p>
 </body>
 </html>
