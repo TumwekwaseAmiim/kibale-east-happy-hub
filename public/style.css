@@ -3,26 +3,29 @@ body {
   font-family: Arial, sans-serif; 
   text-align: center; 
   margin: 0; 
-  padding: 15px; 
-  background: #fff9c4; 
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full screen height */
 }
 
 /* 🎉 Banner */
 .banner {
   background: #ffeb3b;
-  padding: 25px 15px;
-  border-radius: 10px;
+  padding: 30px 20px;
+  border-radius: 0 0 15px 15px;
   margin-bottom: 20px;
   animation: pulse 2s infinite;
 }
 .banner h1 {
-  font-size: 2.2em;
+  font-size: 2em;
   color: #333;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
 }
 .banner p {
-  font-size: 1.3em;
+  font-size: 1.2em;
   color: #444;
+  margin: 0;
 }
 @keyframes pulse {
   0% { transform: scale(1); }
@@ -33,28 +36,29 @@ body {
 /* 📸 Flyer */
 .flyer-img {
   width: 90%;
-  max-width: 400px;
-  border-radius: 10px;
-  margin: 15px auto;
+  max-width: 350px;
+  border-radius: 12px;
+  margin: 20px auto;
   display: block;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   background: white;
 }
 
 /* 🔘 Buttons */
 .btn {
   display: block;
-  width: 85%;
-  max-width: 350px;
+  width: 90%;
+  max-width: 400px;
   margin: 20px auto;
-  padding: 18px 25px;
+  padding: 18px;
   font-size: 1.3em;
+  text-align: center;
   background: #fdd835;
-  color: #333;
+  color: #222;
   text-decoration: none;
   border-radius: 12px;
   font-weight: bold;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
   transition: 0.3s;
 }
 .btn:hover { background: #fbc02d; }
@@ -64,30 +68,44 @@ body {
 .choices button {
   margin: 12px auto;
   display: block;
-  width: 80%;
-  max-width: 300px;
+  width: 85%;
+  max-width: 320px;
+  padding: 14px;
+  font-size: 1.1em;
+  background: #ffeb3b;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
 }
 
 /* 🎤 Voting / Game / Follow Boxes */
-.song, #game, #voting, #follow {
-  margin: 15px auto;
+.song, #game, #voting, #follow, #leaderboard {
+  margin: 20px auto;
   padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #fffde7;
-  max-width: 600px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.9);
+  max-width: 650px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2);
 }
 .song audio {
   width: 100%;
-  margin: 10px 0;
+  margin: 12px 0;
+}
+.song button {
+  padding: 14px;
+  font-size: 1.1em;
+  background: #ffeb3b;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 8px;
 }
 
 /* 📊 Leaderboard */
 #leaderboard table {
   border-collapse: collapse;
-  width: 85%;
-  max-width: 600px;
-  margin: auto;
+  width: 100%;
+  margin-top: 15px;
 }
 #leaderboard th {
   background: #fdd835;
@@ -96,6 +114,7 @@ body {
 #leaderboard td, #leaderboard th {
   border: 1px solid #ccc;
   padding: 10px;
+  font-size: 1.1em;
 }
 
 /* 📢 Follow Section */
@@ -104,27 +123,27 @@ body {
   margin-bottom: 10px;
 }
 #follow a {
-  display: inline-block;
-  margin: 10px;
-  padding: 12px 25px;
+  display: block;
+  margin: 12px auto;
+  padding: 15px;
   background: #fdd835;
-  color: #333;
+  color: #222;
   text-decoration: none;
+  font-size: 1.2em;
+  border-radius: 10px;
   font-weight: bold;
-  border-radius: 8px;
-  transition: 0.3s;
+  max-width: 400px;
 }
-#follow a:hover {
-  background: #fbc02d;
-}
+#follow a:hover { background: #fbc02d; }
 
 /* ⚡ Footer */
 footer {
-  margin-top: 30px;
-  padding: 10px;
+  margin-top: auto;
+  padding: 12px;
   background: #ffeb3b;
-  font-size: 14px;
-  color: #333;
+  text-align: center;
+  font-size: 0.9em;
+  color: #222;
 }
 
 /* 🌈 Page-specific backgrounds */
@@ -132,13 +151,12 @@ body.home { background: #fff9c4; }        /* Light Yellow for Home */
 body.voting { background: #e8f5e9; }     /* Light Green for Voting */
 body.game { background: #e3f2fd; }       /* Light Blue for Game */
 body.follow { background: #fff3e0; }     /* Light Orange for Follow */
-body.leaderboard { background: #f3e5f5; } /* Light Purple for Leaderboard */
+body.leaderboard { background: #f3e5f5; }/* Light Purple for Leaderboard */
 
 /* 📱 Mobile Optimization */
 @media (max-width: 600px) {
-  body { padding: 10px; }
   .banner h1 { font-size: 1.8em; }
   .banner p { font-size: 1.1em; }
   .btn { font-size: 1.2em; padding: 20px; }
-  .flyer-img { width: 95%; max-width: 320px; }
+  .flyer-img { width: 95%; max-width: 280px; }
 }
