@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hon. Frank 2026 – Voters Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 🌐 Navigation -->
+  <nav class="navbar">
+    <a href="index.html">🏠 Home</a>
+    <a href="leaderboard.html">📋 Leaderboard</a>
+  </nav>
+
+  <div class="banner">
+    <h1>💛 Voters Leaderboard</h1>
+    <p>Thanks for loving Hon. Frank 2026! #FrankMyMP #FrankMyChoice</p>
+  </div>
+
+  <section id="leaderboard">
+    <h2>📋 List of Voters</h2>
+    <table id="voterTable" border="1" cellspacing="0" cellpadding="8" style="margin:auto; background:white;">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Song Voted</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- 🌍 Follow Us (same popup links) -->
+  <section id="follow">
+    <h2>📢 Join & Follow the Movement</h2>
+    <p>Before joining our groups, please first call 📞 <strong>0786598658</strong></p>
+
+    <p>
+      <a href="#" onclick="confirmJoin('https://chat.whatsapp.com/IdUpY9g84OIGoJJQrgNURI?mode=ems_copy_t')">
+        💬 Join our WhatsApp Community
+      </a>
+    </p>
+
+    <p>
+      <a href="#" onclick="confirmJoin('https://www.tiktok.com/@tumwekwase.com?_t=ZM-8zv8CrW7dIO&_r=1')">
+        🎶 Follow us on TikTok (@tumwekwase.com)
+      </a>
+    </p>
+  </section>
+
+  <footer>
+    <p>Powered by Eng. Amiim Tumwekwase | Kibale East ✨</p>
+  </footer>
+
+  <script>
+    async function loadVoters() {
+      try {
+        const res = await fetch("/api/votes");
+        const data = await res.json();
+        const tbody = document.querySelector("#voterTable tbody");
+        tbody.innerHTML = "";
+
+        data.voters.forEach((v, index) => {
+          const row = document.createElement("tr");
+          row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${v.name}</td>
+            <td>${v.song.toUpperCase()}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    window.onload = loadVoters;
+
+    // 🌍 Confirm before redirecting
+    function confirmJoin(link) {
+      const proceed = confirm("📞 Please call 0786598658 before joining. Do you want to continue?");
+      if (proceed) {
+        window.open(link, "_blank");
+      }
+    }
+  </script>
+</body>
+</html>

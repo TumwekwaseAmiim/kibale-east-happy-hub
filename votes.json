@@ -1,0 +1,11 @@
+{
+  "song1": 1,
+  "song2": 0,
+  "song3": 0,
+  "voters": [
+    {
+      "name": "amiim",
+      "song": "song1"
+    }
+  ]
+}
